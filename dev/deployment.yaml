@@ -2,18 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: development-deployment
+  labels:
+    app: hello
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: dev-app
+      app: hello
   template:
     metadata:
       labels:
-        app: dev-app
+        app: hello
     spec:
       containers:
-      - name: dev-container
-        image: us-east4-docker.pkg.dev/qwiklabs-gcp-02-0f000e0c6ad2/my-repository/hello-app:v1.0
+      - name: hello-app
+        image: gcr.io/qwiklabs-gcp-02-0f000e0c6ad2/hello-app:v1.0
         ports:
         - containerPort: 8080
